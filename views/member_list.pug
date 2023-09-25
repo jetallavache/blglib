@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each member in member_list
+    li
+      a(href=member.url) #{member.name}
+      span  | #{member.phone}
+      
+      span  |  
+      a(href=member.curr_meeting.url) #{member.curr_meeting.place}
+
+      span  | Date: #{member.date_reg_formatted}
+
+  else
+    li There are no members.

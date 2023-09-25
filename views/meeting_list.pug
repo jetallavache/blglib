@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each meeting in meeting_list
+    li
+      a(href=meeting.book.url) #{meeting.book.title}
+      span  | 
+      a(href=meeting.url) #{meeting.place}
+      span  | Date: #{meeting.date_formatted}
+      span  | Time: #{meeting.time}
+
+  else
+    li There are no meetings.

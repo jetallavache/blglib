@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var moment = require("moment");
 
 var Schema = mongoose.Schema;
 
@@ -16,7 +17,11 @@ var MemberSchema = new Schema({
 });
 
 MemberSchema.virtual("url").get(function () {
-  return "/catalog/member/" + this._id;
+  return "/info/member/" + this._id;
+});
+
+MemberSchema.virtual("date_reg_formatted").get(function () {
+  return moment(this.date_reg).format("MMMM Do, YYYY, HH:mm");
 });
 
 module.exports = mongoose.model("Member", MemberSchema);

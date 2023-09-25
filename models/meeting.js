@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var moment = require("moment");
 
 var Schema = mongoose.Schema;
 
@@ -10,7 +11,15 @@ var MeetingSchema = new Schema({
 });
 
 MeetingSchema.virtual("url").get(function () {
-  return "/catalog/meeting/" + this._id;
+  return "/info/meeting/" + this._id;
+});
+
+MeetingSchema.virtual("date_formatted").get(function () {
+  return moment(this.date).format("MMMM Do, YYYY");
+});
+
+MeetingSchema.virtual("date_yyyy_mm_dd").get(function () {
+  return DateTime.fromJSDate(this.date).toISODate();
 });
 
 module.exports = mongoose.model("Meeting", MeetingSchema);
