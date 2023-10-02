@@ -1,9 +1,0 @@
-extends layout
-
-block content
-  h1 #{title}
-
-  p #[strong Current meeting: ]
-    a(href=member.curr_meeting.url) #{member.curr_meeting.place}
-  p #[strong phone: ] #{member.phone}
-  p #[strong date registration: ] #{member.date_reg_formatted}
