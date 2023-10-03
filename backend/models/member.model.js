@@ -4,7 +4,7 @@ const member_schema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     phone: { type: String, required: true },
-    curr_meeting: { type: mongoose.Schema.Types.ObjectId, ref: "Meeting", required: true },
+    currMeeting: { type: mongoose.Schema.Types.ObjectId, ref: "Meeting", required: true },
     status: {
       type: String,
       required: true,

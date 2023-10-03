@@ -16,9 +16,4 @@ export const meeting_valid = [
         .isISO8601()
         .toDate()
         .withMessage('Не верный формат даты'),
-    body('time')
-        .trim()
-        .isLength({ min: 1 })
-        .escape()
-        .withMessage('Поле не может быть пустым'),
   ];

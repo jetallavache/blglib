@@ -33,7 +33,7 @@ export const member_create = async (req, res) => {
     const member = new member_model({
         name: req.body.name,
         phone: req.body.phone,
-        curr_meeting: req.body.curr_meeting,
+        currMeeting: req.body.currMeeting,
         status: req.body.status,
     });
     
@@ -76,7 +76,7 @@ export const member_update = async (req, res) => {
       {
         name: req.body.name,
         phone: req.body.phone,
-        curr_meeting: req.body.curr_meeting,
+        currMeeting: req.body.currMeeting,
         status: req.body.status,
       }
     );

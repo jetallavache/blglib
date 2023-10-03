@@ -103,25 +103,27 @@ export const meeting_last = async (req, res) => {
       .sort({ _id: -1})
       .exec();
 
-    const { place, date } = meeting._doc;
+    const date = meeting.date_formatted;
+
+    const { place } = meeting._doc;
 
     const book_child = await book_model
       .findById(meeting.book)
       .exec();
 
-    const { title, imageUrl } = book_child._doc;
+    const { title, covers } = book_child._doc;
 
     const autor_child = await author_model
       .findById(book_child.author)
       .exec();
 
-    const { first_name, family_name } = autor_child._doc;   
+    const { firstName, familyName } = autor_child._doc;   
 
     res.json({
       title,
-      first_name,
-      family_name,
-      imageUrl,
+      firstName,
+      familyName,
+      covers,
       place,
       date
     });

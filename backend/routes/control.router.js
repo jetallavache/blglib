@@ -3,7 +3,7 @@ var router = express.Router();
 
 import { author_valid, book_valid, meeting_valid, member_valid } from '../validations/index.js';
 
-import { handle_valid_err, check_auth } from '../utils/index.js';
+import { handle_valid_err, check_auth, set_covers } from '../utils/index.js';
 
 import { author_controller, book_controller, meeting_controller, member_controller } from '../controllers/index.js';
 
@@ -13,9 +13,10 @@ router.post('/author/create', author_valid, check_auth, handle_valid_err, author
 router.delete('/author/:id', check_auth, author_controller.author_remove);
 router.patch('/author/:id', author_valid, check_auth, handle_valid_err, author_controller.author_update);
 
-router.get('/books', check_auth, book_controller.book_list);
+// router.get('/books', check_auth, book_controller.book_list);
+router.get('/books', book_controller.book_list);
 router.get('/book/:id', check_auth, book_controller.book_detail);
-router.post('/book/create', book_valid, check_auth, handle_valid_err, book_controller.book_create);
+router.post('/book/create', book_valid, check_auth, handle_valid_err, set_covers, book_controller.book_create);
 router.delete('/book/:id', check_auth, book_controller.book_remove);
 router.patch('/book/:id', book_valid, check_auth, handle_valid_err, book_controller.book_update);
 

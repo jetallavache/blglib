@@ -31,8 +31,8 @@ export const author_detail = async (req, res) => {
 export const author_create = async (req, res) => {
     try {
       const author = new author_model({
-        first_name: req.body.first_name,
-        family_name: req.body.family_name,
+        firstName: req.body.firstName,
+        familyName: req.body.familyName,
       });
       
       const post = await author.save();
@@ -71,8 +71,8 @@ export const author_update = async (req, res) => {
         _id: req.params.id,
       },
       {
-        family_name: req.body.family_name,
-        first_name: req.body.first_name,
+        familyName: req.body.familyName,
+        firstName: req.body.firstName,
       }
     );
 

@@ -4,15 +4,17 @@
   "private": true,
   "type": "module",
   "bin": {
-    "www":"./bin/www.js"
+    "www": "./bin/www.js"
   },
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "format": "git-clang-format"
+    "format": "git-clang-format",
+    "pm2": "pm2 start ./bin/www.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "canvas": "^2.11.2",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",

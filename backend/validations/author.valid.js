@@ -1,12 +1,12 @@
 import { body } from 'express-validator';
 
 export const author_valid = [
-    body('first_name')
+    body('firstName')
       .trim()
       .isLength({ min: 1 })
       .escape()
       .withMessage('Поле не может быть пустым'),
-    body('family_name')
+    body('familyName')
       .trim()
       .isLength({ min: 1 })
       .escape()

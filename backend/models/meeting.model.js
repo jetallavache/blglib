@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import moment from 'moment';
 
 const meeting_schema = new mongoose.Schema(
   {
@@ -11,5 +12,9 @@ const meeting_schema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+meeting_schema.virtual("date_formatted").get(function () {
+  return moment(this.date).locale('ru').format("HH:mm, D MMMM (ddd)");
+});
 
 export default mongoose.model("Meeting", meeting_schema);

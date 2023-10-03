@@ -2,7 +2,7 @@ import book_model from '../models/book.model.js';
 
 export const book_list = async (req, res) => {
   try {
-    const list_books = await book_model.find({}).populate("author").exec();
+    const list_books = await book_model.find({}).populate("author").populate("user").exec();
 
     res.json(list_books);
 
@@ -16,7 +16,7 @@ export const book_list = async (req, res) => {
 
 export const book_detail = async (req, res) => {
   try {
-    const book = await book_model.findById(req.params.id).populate("author").exec();
+    const book = await book_model.findById(req.params.id).populate("author").populate("user").exec();
 
     res.json(book);
 
@@ -33,8 +33,8 @@ export const book_create = async (req, res) => {
     const book = new book_model({
       title: req.body.title,
       author: req.body.author,
-      isbn: req.body.isbn,
-      imageUrl: req.body.imageUrl,
+      covers:  req.body.covers,
+      status: req.body.status,
       user: req.body.user,
     });
     
@@ -77,8 +77,8 @@ export const book_update = async (req, res) => {
       {
         title: req.body.title,
         author: req.body.author,
-        isbn: req.body.isbn,
-        imageUrl: req.body.imageUrl,
+        covers: req.body.covers,
+        status: req.body.status,
         user: req.body.user,
       }
     );
