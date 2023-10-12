@@ -14,7 +14,11 @@ const meeting_schema = new mongoose.Schema(
 );
 
 meeting_schema.virtual("date_formatted").get(function () {
-  return moment(this.date).locale('ru').format("HH:mm, D MMMM (ddd)");
+  return moment(this.date).locale('ru').format("D MMMM (ddd), в HH:mm");
+});
+
+meeting_schema.virtual("date_with_year").get(function () {
+  return moment(this.date).locale('ru').format("D MMMM YYYY");
 });
 
 export default mongoose.model("Meeting", meeting_schema);

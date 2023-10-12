@@ -31,16 +31,15 @@ export const member_detail = async (req, res) => {
 export const member_create = async (req, res) => {
   try {
     const member = new member_model({
-        name: req.body.name,
-        phone: req.body.phone,
-        currMeeting: req.body.currMeeting,
-        status: req.body.status,
+      name: req.body.name,
+      phone: req.body.phone,
+      message: req.body.message,
     });
-    
+
     const post = await member.save();
     res.json(post);
 
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     res.status(500).json({
       message: 'Не удалось создать участника',

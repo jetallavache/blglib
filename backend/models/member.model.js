@@ -4,13 +4,7 @@ const member_schema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     phone: { type: String, required: true },
-    currMeeting: { type: mongoose.Schema.Types.ObjectId, ref: "Meeting", required: true },
-    status: {
-      type: String,
-      required: true,
-      enum: ["true", "false"],
-      default: "true",
-    },
+    message: { type: String, default: '(none)' },
   },
   {
     timestamps: true,

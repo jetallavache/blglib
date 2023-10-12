@@ -1,0 +1,43 @@
+@media only screen and (max-width: 800px) {
+  .footer-right-options {
+    display: none !important;
+  }
+  .footer-right-menubar {
+    display: block !important;
+  }
+  .footer-container {
+    position: inherit !important;
+    width: 100%;
+  }
+}
+
+.footer-container {
+  padding-top: 100px;
+  width: 125px;
+  height: 55px;
+  color: rgb(63, 62, 62);
+  font-size: 1.2rem;
+  position: unset;
+  margin-bottom: 15px;
+}
+
+.footer-left {
+  background-color: rgba(37, 37, 37, 0.5);
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-left > a {
+  justify-content: flex-start;
+}
+
+.footer-right {
+  background-color: rgba(74, 74, 74, 0.5);
+  text-align: center;
+  justify-content: center;
+
+}
+
+.footer-right > a:hover {
+  color: var(--section-color) !important;
+}

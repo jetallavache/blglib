@@ -30,21 +30,21 @@ export const meeting_detail = async (req, res) => {
   }
 };
 
-export const meeting_create  = async (req, res, next) => {
+export const meeting_create = async (req, res, next) => {
   try {
-    const meeting = new meeting_model({  
+    const meeting = new meeting_model({
       book: req.body.book,
       place: req.body.place,
       date: req.body.date,
       user: req.body.user,
     });
-    
+
     const post = await meeting.save();
     res.json(post);
 
     next();
 
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     res.status(500).json({
       message: 'Не удалось создать мероприятие',
@@ -100,7 +100,7 @@ export const meeting_last = async (req, res) => {
   try {
     const meeting = await meeting_model
       .findOne({})
-      .sort({ _id: -1})
+      .sort({ _id: -1 })
       .exec();
 
     const date = meeting.date_formatted;
@@ -117,7 +117,26 @@ export const meeting_last = async (req, res) => {
       .findById(book_child.author)
       .exec();
 
-    const { firstName, familyName } = autor_child._doc;   
+    const { firstName, familyName } = autor_child._doc;
+
+    const meetings_five = await meeting_model
+      .find({})
+      .sort({ date: -1 })
+      .limit(5)
+      .populate("book")
+      .exec();
+
+    let listMeetings = [];
+    for (let i = 0; i < meetings_five.length; ++i) {
+      const author_obj = await author_model.findById(meetings_five[i].book.author);
+      listMeetings.push({
+        place: meetings_five[i].place,
+        title: meetings_five[i].book.title,
+        firstName: author_obj.firstName,
+        familyName: author_obj.familyName,
+        date: meetings_five[i].date_with_year
+      });
+    }
 
     res.json({
       title,
@@ -125,7 +144,8 @@ export const meeting_last = async (req, res) => {
       familyName,
       covers,
       place,
-      date
+      date,
+      listMeetings
     });
 
   } catch (err) {

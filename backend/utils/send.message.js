@@ -12,6 +12,7 @@ export default (req, res, next) => {
     let fields = [
       '<b>Имя</b>: ' + req.body.name,
       '<b>Телефон</b>: ' + req.body.phone,
+      '<b>Сообщение</b>: ' + req.body.message,
       '<b>Дата регистрации</b>: ' + day + '/' + month + '/' + year
     ]
     let msg = ''
@@ -19,11 +20,11 @@ export default (req, res, next) => {
     fields.forEach(field => {
       msg += field + '\n'
     });
-  
-    http.post('https://api.telegram.org/bot' + config.telegram.token + '/sendMessage?chat_id=' + config.telegram.chat + '&parse_mode=html&text=' + encodeURIComponent(msg), function (error, response, body) {  
+
+    http.post('https://api.telegram.org/bot' + config.telegram.token + '/sendMessage?chat_id=' + config.telegram.chat + '&parse_mode=html&text=' + encodeURIComponent(msg), function (error, response, body) {
       if (error) {
-        console.log('error:', error); 
-        console.log('statusCode:', response && response.statusCode); 
+        console.log('error:', error);
+        console.log('statusCode:', response && response.statusCode);
         return res.status(500).json({
           message: "Не удалось отправить сообщение",
         })
@@ -31,7 +32,7 @@ export default (req, res, next) => {
       else {
         next();
       }
-    }); 
+    });
   } catch (e) {
     console.log(e);
     return res.status(500).json({
