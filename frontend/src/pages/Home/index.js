@@ -5,9 +5,9 @@ import './index.css';
 
 import { fetchCurrMeeting } from '../../redux/slices/currMeeting';
 
-import { HomePage } from '../../components/HomePage';
-import { AboutPage } from '../../components/AboutPage';
-import { ArchivePage } from '../../components/ArchivePage';
+import { HomePage } from '../../components/Home/HomePage';
+import { AboutPage } from '../../components/Home/AboutPage';
+import { ArchivePage } from '../../components/Home/ArchivePage';
 import { CurrMeetingPage, TakePartPage } from '../../components';
 import { Navbar, Footer } from '../../components';
 

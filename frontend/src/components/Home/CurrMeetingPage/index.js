@@ -25,7 +25,7 @@ export const CurrMeetingPage = ({
             Место проведения: <span>{place}</span>
           </p>
           <p>
-            Обсуждаем проведение <span>„{title}“</span> (<span>{firstName} {familyName}</span>)
+            Обсуждаем произведение <span>„{title}“</span> (<span>{firstName} {familyName}</span>)
           </p>
         </div>
         <div className="curr-meeting-right">

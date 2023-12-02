@@ -1,11 +1,11 @@
 export * from './Header';
 export * from './Navbar';
-export * from './HomePage';
-export * from './CurrMeetingPage';
-export * from './TakePartPage';
-export * from './ArchivePage';
-export * from './AboutPage';
+export * from './Home/HomePage';
+export * from './Home/CurrMeetingPage';
+export * from './Home/TakePartPage';
+export * from './Home/ArchivePage';
+export * from './Home/AboutPage';
 export * from './Footer';
 
-export * from './AddMeeting';
+export * from './Home/AddMeeting';
 

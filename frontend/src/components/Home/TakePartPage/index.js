@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 
-import { fetchAddMember, selectIsAddMember } from '../../redux/slices/addMember';
+import { fetchAddMember, selectIsAddMember } from '../../../redux/slices/addMember';
 
 const quoteList = [
   "Если вы ищете совершенства, вы никогда не будете счастливы",
