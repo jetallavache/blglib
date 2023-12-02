@@ -1,5 +1,5 @@
 export * from './Header';
-export * from './Navbar';
+export * from './Home/Navbar';
 export * from './Home/HomePage';
 export * from './Home/CurrMeetingPage';
 export * from './Home/TakePartPage';
