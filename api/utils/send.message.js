@@ -1,5 +1,5 @@
 import http from 'request';
-import config from '../config/config.json' assert { type: "json" };
+import 'dotenv/config.js';
 
 export default (req, res) => {
   try {
@@ -16,19 +16,19 @@ export default (req, res) => {
         break;
 
       case 'Await':
-        _status = 'В листе ожидания (*)'
+        _status = 'В списке ожидания'
         break;
       
       case 'Refused':
-        _status = 'Отказался от участия (-)'
+        _status = 'Отказался от участия'
         break;
 
       case 'Already_exists':
-        _status = 'Участник с данным номером уже существует (x)'
+        _status = 'Участник с данным номером уже существует'
         break;
       
       default:
-        _status = 'Неопределен (?)'
+        _status = 'Неопределен'
     }
 
     let fields = [
@@ -44,7 +44,10 @@ export default (req, res) => {
       msg += field + '\n'
     });
 
-    http.post('https://api.telegram.org/bot' + config.telegram.token + '/sendMessage?chat_id=' + config.telegram.chat + '&parse_mode=html&text=' + encodeURIComponent(msg), function (error, response, body) {
+    http.post('https://api.telegram.org/bot' + process.env.TG_TOKEN + 
+              '/sendMessage?chat_id=' + process.env.TG_CHAT + 
+              '&parse_mode=html&text=' + encodeURIComponent(msg), 
+              function (error, response, body) {
       if (error) {
         console.log('error:', error);
         console.log('statusCode:', response && response.statusCode);

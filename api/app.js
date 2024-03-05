@@ -1,5 +1,6 @@
 import createError from 'http-errors';
 import express from 'express';
+import 'dotenv/config.js';
 import path from 'path';
 import { fileURLToPath } from "url";
 import logger from 'morgan';
@@ -10,18 +11,17 @@ import { index_router } from './routes/index.router.js';
 import { auth_router } from './routes/auth.router.js';
 import { control_router } from './routes/control.router.js';
 
-import config from './config/config.json' assert { type: "json" };
-
 const app = express();
 
-mongoose.connect(config.mongodb.url);
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://127.0.0.1/blglib');
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.json({ limit: "1kb" }));
+app.use(express.urlencoded({extended: false, limit: "1kb"}));
+// app.use(express.multipart({ limit: "10mb" }));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

@@ -10,6 +10,8 @@ import app from '../app.js';
 var debug = require('debug')('blglib:server');
 var http = require('http');
 
+import 'dotenv/config.js';
+
 /**
  * Get port from environment and store in Express.
  */
