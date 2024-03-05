@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from 'react-hook-form';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { fetchAddMember, selectIsAddMember } from '../../../redux/slices/addMember';
 
@@ -27,7 +27,7 @@ const authorQuoteList = [
 ]
 
 const freeSeatsList = [
-  "Нет свободных мест. Мы добавим Вас в лист ожидания.",
+  "Нет свободных мест. Мы добавим Вас в список ожидания.",
   "Осталось одно место",
   "Осталось два места",
   "Осталось три места",
@@ -90,6 +90,12 @@ export const TakePartPage = ({countParticipants}) => {
     }
   }
 
+  const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
+
+  function onChange(value) {
+    setIsCaptchaSuccess(true)
+    console.log("captcha value: ", value);
+  }
 
   return (
     <div className="take-part-container">
@@ -104,8 +110,10 @@ export const TakePartPage = ({countParticipants}) => {
         draggable
         pauseOnHover
       />
+
       <div className="take-part-header">
         Принять <span>участие</span></div>
+      
       <div className="take-part-info">
         <div className="take-part-left">
           <span>„{quote}“</span>
@@ -130,7 +138,7 @@ export const TakePartPage = ({countParticipants}) => {
           {(isAddMember && !isFreeSeats) && (
             <div>
               <p>
-                Добавили Вас в <span>лист ожидания</span>.
+                Добавили Вас в <span>список ожидания</span>.
               </p>
               <p>
                 Обязательно свяжемся с вами.
@@ -187,6 +195,7 @@ export const TakePartPage = ({countParticipants}) => {
                 {...register('name', { required: 'Укажите ваше имя' })}
                 fullWidth
               />
+
               <TextField
                 sx={{
                   borderRadius: 1,
@@ -229,6 +238,7 @@ export const TakePartPage = ({countParticipants}) => {
                 {...register('phone', { required: 'Укажите номер телефона' })}
                 fullWidth
               />
+              
               <TextField
                 sx={{
                   marginBottom: '20px',
@@ -272,10 +282,16 @@ export const TakePartPage = ({countParticipants}) => {
                 fullWidth
               />
 
+              <ReCAPTCHA
+                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                onChange={onChange}
+              />
+
               <Button
                 // sx={{
                 //   backgroundColor: '#ff8ed9',
                 // }}
+                disabled={!isCaptchaSuccessful}
                 color="secondary"
                 type="submit"
                 size="large"

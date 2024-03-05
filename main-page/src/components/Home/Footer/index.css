@@ -2,6 +2,9 @@
   .footer-right-options {
     display: none !important;
   }
+  .footer-right-menubar {
+    display: block !important;
+  }
   .footer-container {
     position: inherit !important;
     width: 100%;
@@ -36,6 +39,10 @@
 
 .footer-right-options > a:hover {
   color: var(--section-color) !important;
+}
+
+.footer-right-menubar {
+  display: none;
 }
 
 .footer-menu-options {
