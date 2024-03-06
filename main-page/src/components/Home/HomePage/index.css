@@ -1,6 +1,13 @@
 @media only screen and (max-width: 800px) {
+  .home-page-container {
+    background-repeat:repeat-y !important;
+    background-size: auto !important;
+    background-position: right !important;
+    background-size: 60% !important;
+    background-position-y: 80% !important;
+  }
+
   .home-page {
-    
     font-size: var(--section-heading-size-mobile) !important;
     line-height: 3.3rem !important;
     font-weight: 500 !important;
@@ -8,9 +15,9 @@
     -webkit-hyphens: auto;
     hyphens: auto;
   }
+
   .home-page-footer {
-    margin-bottom: 11.5rem !important;
-    
+    margin-bottom: 1rem !important;
   }
 
   .home-page > div > span {
@@ -19,13 +26,20 @@
 }
 
 .home-page-container {
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100%;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* justify-content: center; */
+  background: linear-gradient(to left, rgba(255, 0, 149, 0.123) 0%,
+              rgb(15, 15, 15)), url("../../../assets/img1.jpg");
+  box-shadow: 0 0 5px 5px #0c0c0c inset;
+  background-repeat:repeat-y;
+  background-size: auto;
+  background-position: right;
+  background-size: 40%;
+  background-position-y: 80%;
 }
 
 .home-page-header {
@@ -56,8 +70,8 @@
 }
 
 .home-page-footer {
-  width: 60px;
+  width: 65px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 80px;
+  /* margin-bottom: 80px; */
 }

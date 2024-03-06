@@ -9,7 +9,7 @@
   .take-part-left,
   .take-part-right {
     width: 100% !important;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 }
 
@@ -17,7 +17,6 @@
   color: white;
   display: flex;
   flex-direction: column;
-  margin-bottom: 320px;
 }
 
 .take-part-header {
@@ -58,7 +57,6 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: 280px;
   color: var(--section-light-grey-color);
 }
 
@@ -69,7 +67,6 @@
 
 .take-part-right > div > p > span {
   color: var(--section-purple-color);
-  font-style: italic;
 }
 
 .take-part-form {
@@ -81,7 +78,6 @@
 
 .take-part-form-row {
   display: flex;
-  /* justify-content: space-between; */
 }
 
 .take-part-form-row > div {
@@ -100,7 +96,6 @@
 
 .take-part-form-col > span {
   color: var(--section-purple-color);
-  font-style: italic;
 }
 
 .take-part-form-message {
@@ -117,9 +112,3 @@
   border-radius: 5px;
 }
 
-.take-part-form-button {
-  /* width: 70px;
-  height: 30px;
-  font-weight: 500; */
-  background-color: rgb(3, 234, 255);
-}

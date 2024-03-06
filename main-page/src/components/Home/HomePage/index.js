@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import './index.css';
+// import img2 from '../../../assets/img2.jpg';
 
 export const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ export const HomePage = () => {
           </p>
         </div>
       </div>
+
       <div className="home-page-footer">
         <a
           href="https://www.instagram.com/blg.lib/"
@@ -32,7 +34,6 @@ export const HomePage = () => {
         >
           <TelegramIcon />
         </a>
-
       </div>
     </div>
   );

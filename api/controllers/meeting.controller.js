@@ -123,12 +123,12 @@ export const meeting_last = async (req, res) => {
     const meetings_five = await meeting_model
       .find({})
       .sort({ date: -1 })
-      .limit(5)
+      .limit(6)
       .populate("book")
       .exec();
 
     let listMeetings = [];
-    for (let i = 0; i < meetings_five.length; ++i) {
+    for (let i = 1; i < meetings_five.length; ++i) {
       const author_obj = await author_model.findById(meetings_five[i].book.author);
       listMeetings.push({
         place: meetings_five[i].place,

@@ -1,16 +1,22 @@
 :root {
-  --heading-margin: 100px;
+  --heading-margin: 80px;
+  /* --section-color: hsl(210, 79%, 46%); */
   --section-color: rgb(219, 68, 144);
   --section-heading-size: 5rem;
   --section-heading-size-mobile: 3.0rem;
   --section-sub-heading-size: 1.5rem;
   --section-grey-color: rgb(136, 136, 136);
   --section-light-grey-color: rgb(219, 219, 219);
-  --section-purple-color: rgb(45, 107, 201);
+  --section-purple-color: #1976d2;
   --heading-letter-spacing: -3px;
 }
 
 @media only screen and (max-width: 800px) {
+  .app-section {
+    padding: 0 25px 20px 20px !important;
+    margin-bottom: var(--heading-margin);
+  }
+
   .btn-back-to-top > span {
     display: none;
   }
@@ -21,7 +27,7 @@
 }
 
 .app-section {
-  padding: 0 25px;
+  padding: 0 0 25px 25px;
   margin-bottom: var(--heading-margin);
 }
 

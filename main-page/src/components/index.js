@@ -4,5 +4,4 @@ export * from './Home/CurrMeetingPage';
 export * from './Home/TakePartPage';
 export * from './Home/ArchivePage';
 export * from './Home/AboutPage';
-export * from './Home/AddMeeting';
 export * from './Home/Footer';
