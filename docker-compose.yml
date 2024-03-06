@@ -1,0 +1,65 @@
+version: '3.5'
+
+services:
+  mongodb:
+    container_name: mongodb-blglib
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - "$MONGO_LOCAL_PORT:$MONGO_DOCKER_PORT"
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+    #   - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD # create user [x]
+    volumes:
+      - ./mongodb/mongodb-data:/data/db
+      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js  # create user <--
+    env_file: ./.env
+    command: [--auth]
+    networks:
+      - app-network
+
+  api:
+    container_name: api-blglib
+    depends_on:
+      - mongodb
+    build: ./api
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DB_USER=$MONGO_INITDB_ROOT_USERNAME
+      - DB_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+      - DB_HOSTNAME=mongodb-blglib
+      - DB_PORT=$MONGO_DOCKER_PORT
+      - DB_NAME=$MONGO_DATABASE
+      - TG_TOKEN=$TG_TOKEN
+      - TG_CHAT=$TG_CHAT
+    stdin_open: true
+    tty: true
+    networks:
+      - app-network
+
+  main-page:
+    depends_on:
+      - api
+    build: ./main-page
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+    environment:
+      - REACT_APP_BASE_URL_API=$BASE_URL_API
+      - REACT_APP_RECAPTCHA_SITE_KEY=$REACT_APP_RECAPTCHA_SITE_KEY
+      - PUBLIC_URL=$PUBLIC_URL
+    stdin_open: true
+    tty: true
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+    mongodb-data:

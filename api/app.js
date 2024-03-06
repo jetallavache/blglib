@@ -11,12 +11,22 @@ import { index_router } from './routes/index.router.js';
 import { auth_router } from './routes/auth.router.js';
 import { control_router } from './routes/control.router.js';
 
+import { url } from './conf/db.conf.js'
+
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://127.0.0.1/blglib');
-mongoose.Promise = global.Promise;
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+mongoose
+  .connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database saccessful");
+  })
+  .catch(err => {
+    console.log("MongoDB connection error: ", err);
+    process.exit();
+  });
 
 app.use(logger('dev'));
 app.use(express.json({ limit: "1kb" }));
