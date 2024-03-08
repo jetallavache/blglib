@@ -9,7 +9,7 @@
   "scripts": {
     "dev:client": "npm run start --prefix main-page",
     "dev:api": "npm run start --prefix api",
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:api\"", 
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:api\"",
     "dev:compose:up": "docker compose -f docker-compose.dev.yml up --build",
     "dev:compose:stop": "docker compose -f docker-compose.dev.yml stop",
     "dev:compose:rm": "docker compose -f docker-compose.dev.yml rm",
