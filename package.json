@@ -1,0 +1,25 @@
+{
+  "name": "eddacris",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jetallavache/blglib.git",
+  "author": "eddacris",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev:client": "npm run start --prefix main-page",
+    "dev:api": "npm run start --prefix api",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:api\"", 
+    "dev:compose:up": "docker compose -f docker-compose.dev.yml up --build",
+    "dev:compose:stop": "docker compose -f docker-compose.dev.yml stop",
+    "dev:compose:rm": "docker compose -f docker-compose.dev.yml rm",
+    "dev:compose:rmi": "docker compose -f docker-compose.dev.yml down --rmi all",
+    "dev:compose:ps": "docker compose -f docker-compose.dev.yml ps",
+    "compose:up": "docker compose up -d",
+    "compose:stop": "docker compose stop",
+    "compose:rm": "docker compose rm"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

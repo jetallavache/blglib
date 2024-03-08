@@ -30,7 +30,7 @@ export const CurrMeetingPage = ({
         </div>
         <div className="curr-meeting-right">
           {imageUrl && (
-            <img className="curr-meeting-img" src={imageUrl[0]} />
+            <img className="curr-meeting-img" alt="" src={imageUrl[0]} />
           )}
         </div>
       </div>

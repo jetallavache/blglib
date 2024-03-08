@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import ReCAPTCHA from 'react-google-recaptcha';
+// import ReCAPTCHA from 'react-google-recaptcha';
 
 import { fetchAddMember, selectIsAddMember } from '../../../redux/slices/addMember';
 
@@ -76,8 +76,6 @@ export const TakePartPage = ({countParticipants}) => {
 
   const isFreeSeats = freeSeats > 0 ? true : false;
 
-  console.log(isFreeSeats);
-
   let rundomNum = Math.floor(Math.random() * quoteList.length);
 
   const [quote, setJoke] = useState(
@@ -95,11 +93,10 @@ export const TakePartPage = ({countParticipants}) => {
     defaultValues: {
       name: '',
       phone: '',
+      message: '',
     },
     mode: 'onChange',
   });
-
-  console.log(isAddMember);
 
   const onSubmit = async (values) => {
     const data = await dispatch(fetchAddMember(values));
@@ -113,11 +110,11 @@ export const TakePartPage = ({countParticipants}) => {
     }
   }
 
-  const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
+  // const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
 
-  function onChange(value) {
-    setIsCaptchaSuccess(true)
-  }
+  // function onChange(value) {
+  //   setIsCaptchaSuccess(true)
+  // }
 
   return (
     <div className='take-part-container'>
@@ -205,15 +202,15 @@ export const TakePartPage = ({countParticipants}) => {
                 label='Вопросы или пожелания'
                 error={Boolean(errors.message?.message)}
                 helperText={errors.message?.message}
-                // {...register('message')}
+                {...register('message')}
                 fullWidth
               />
 
-              <ReCAPTCHA
+              {/* <ReCAPTCHA
                 sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                 onChange={onChange}
                 theme='dark'
-              />
+              /> */}
 
               <Button
                 sx={{
@@ -225,8 +222,7 @@ export const TakePartPage = ({countParticipants}) => {
                   }
                 }}
 
-                disabled={!isCaptchaSuccessful}
-                // color='secondary'
+                // disabled={!isCaptchaSuccessful}
                 type='submit'
                 size='large'
                 variant='contained'

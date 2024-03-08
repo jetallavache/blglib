@@ -1,10 +1,5 @@
 @media only screen and (max-width: 800px) {
   .archive-container {
-    background-repeat:repeat-y !important;
-    background-size: auto !important;
-    background-position: right !important;
-    background-size: 60% !important;
-    background-position-y: 80% !important;
   }
 
   .archive-header {
@@ -20,14 +15,6 @@
   color: white;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to left, rgba(255, 0, 149, 0.123) 0%,
-  rgb(15, 15, 15)), url("../../../assets/img1.jpg");
-  box-shadow: 0 0 5px 5px #0c0c0c inset;
-  background-repeat:repeat-y;
-  background-size: auto;
-  background-position: right;
-  background-size: 40%;
-  background-position-y: 80%;
 }
 
 .archive-header {

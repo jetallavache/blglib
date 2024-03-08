@@ -1,6 +1,10 @@
-FROM node:20-alpine
+ARG NODE_VERSION=20
 
-WORKDIR /app
+FROM eddacris/blglib-main-page AS main-page
+
+FROM node:${NODE_VERSION}-alpine
+
+WORKDIR /app-api
 RUN apk add --update --no-cache \
     make \
     g++ \
@@ -15,4 +19,6 @@ RUN apk add --update --no-cache \
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . ./
-CMD npm start
+COPY --from=main-page /app-main-page/build /app-api/app-main-page/build
+EXPOSE 4000
+CMD ["npm", "start"]

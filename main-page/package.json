@@ -1,5 +1,5 @@
 {
-  "name": "react-blog",
+  "name": "blglib-main-page",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -55,7 +55,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-google-recaptcha": "^2.1.9",
-    "@babel/plugin-proposal-private-property-in-object":"^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/react-google-recaptcha": "^2.1.9"
   }
 }

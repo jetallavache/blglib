@@ -1,6 +1,11 @@
-FROM node:20-alpine
+ARG NODE_VERSION=20
 
-WORKDIR /app
+FROM node:${NODE_VERSION}-alpine
+
+WORKDIR /app-main-page
+
+# Так как образ node:alpine не включает дополнительных инструментов и ПО, 
+# необходимо их добавить для сборки проекта, надо отфильтровать список
 RUN apk add --update --no-cache \
     make \
     g++ \
@@ -11,9 +16,8 @@ RUN apk add --update --no-cache \
     libtool \
     autoconf \
     automake 
-
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . ./
-# EXPOSE 3000
-CMD npm start
+ENV REACT_APP_BASE_URL_API=http://localhost:4000/api
+RUN npm run build

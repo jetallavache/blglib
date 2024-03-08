@@ -1,65 +1,29 @@
-version: '3.5'
-
+version: '3.9'
 services:
   mongodb:
-    container_name: mongodb-blglib
+    env_file: .env
+    container_name: mongodb-${APP_NAME}
     image: mongo:latest
-    restart: unless-stopped
-    ports:
-      - "$MONGO_LOCAL_PORT:$MONGO_DOCKER_PORT"
-    # environment:
-    #   - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
-    #   - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD # create user [x]
     volumes:
-      - ./mongodb/mongodb-data:/data/db
+      - mongodb-data:/data/db
       - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js  # create user <--
-    env_file: ./.env
+    ports:
+      - 27017:27017
     command: [--auth]
-    networks:
-      - app-network
+    restart: on-failure
 
   api:
-    container_name: api-blglib
+    env_file: .env
+    environment:
+      - ENV=production
+      - M_HOSTNAME=mongodb-${APP_NAME}
+    container_name: api-${APP_NAME}
+    build: api
     depends_on:
       - mongodb
-    build: ./api
-    restart: unless-stopped
-    env_file: ./.env
     ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-    environment:
-      - DB_USER=$MONGO_INITDB_ROOT_USERNAME
-      - DB_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
-      - DB_HOSTNAME=mongodb-blglib
-      - DB_PORT=$MONGO_DOCKER_PORT
-      - DB_NAME=$MONGO_DATABASE
-      - TG_TOKEN=$TG_TOKEN
-      - TG_CHAT=$TG_CHAT
-    stdin_open: true
-    tty: true
-    networks:
-      - app-network
-
-  main-page:
-    depends_on:
-      - api
-    build: ./main-page
-    restart: unless-stopped
-    env_file: ./.env
-    ports:
-      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
-    environment:
-      - REACT_APP_BASE_URL_API=$BASE_URL_API
-      - REACT_APP_RECAPTCHA_SITE_KEY=$REACT_APP_RECAPTCHA_SITE_KEY
-      - PUBLIC_URL=$PUBLIC_URL
-    stdin_open: true
-    tty: true
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+      - 4000:4000
+    restart: on-failure
 
 volumes:
-    mongodb-data:
+  mongodb-data:

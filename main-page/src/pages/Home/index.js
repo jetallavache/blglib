@@ -35,11 +35,13 @@ export const Home = () => {
 
   React.useEffect(() => {
     dispatch(fetchCurrMeeting());
-  }, []);
+   }, []);
 
   return (
     <>
-      <Navbar />
+      <div className="navbar-section" id="home">
+        <Navbar />
+      </div>
       <div className="app-section" id="home">
         <HomePage />
       </div>
@@ -69,7 +71,7 @@ export const Home = () => {
       </div>
       {showBackToTopBtn && (
         <button className="btn-back-to-top" onClick={scrollToTop}>
-          <span> Back to Top</span>
+          <span> Back to Top </span>
           <ArrowUpwardIcon />
         </button>
       )}

@@ -1,5 +1,5 @@
 {
-  "name": "blglib",
+  "name": "blglib-api",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www",
+    "dev": "nodemon ./bin/www",
     "format": "git-clang-format",
     "pm2": "pm2 start ./bin/www.js"
   },
