@@ -1,0 +1,70 @@
+@media only screen and (max-width: 800px) {
+  .curr-meeting-container {
+
+  }
+
+  .curr-meeting-info {
+    flex-direction: column;
+  }
+  .curr-meeting-header {
+    font-size: var(--section-heading-size-mobile) !important;
+  }
+
+  .curr-meeting-left {
+    width: 100% !important;
+  }
+  
+  .curr-meeting-right {
+    width: 100% !important;
+    justify-content: center;
+  }
+}
+
+.curr-meeting-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.curr-meeting-header {
+  font-size: var(--section-heading-size);
+  letter-spacing: var(--heading-letter-spacing);
+}
+
+.curr-meeting-header > span {
+  color: var(--section-color);
+}
+
+.curr-meeting-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.curr-meeting-left {
+  width: 50%;
+  color: rgb(178, 177, 177);
+  font-size: var(--section-sub-heading-size) !important;
+}
+
+.curr-meeting-left > p {
+  margin-bottom: 10px;
+}
+
+.curr-meeting-left > p > span {
+  color: white;
+}
+
+.curr-meeting-right {
+  width: 40%;
+  background: linear-gradient(to bottom right, rgba(131, 131, 131, 0.2), rgb(112, 112, 112));
+  display:grid;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.curr-meeting-img {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}

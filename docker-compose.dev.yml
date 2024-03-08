@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  mongodb:
+    env_file: .env
+    container_name: mongodb-${APP_NAME}
+    image: mongo:latest
+    volumes:
+      - mongodb-data:/data/db
+      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js  # create user <--
+    ports:
+      - 27017:27017
+    command: [--auth]
+    restart: on-failure
+
+  main-page:
+    env_file: .env
+    container_name: main-page-${APP_NAME}
+    image: node:${NODE_VERSION}-alpine
+    working_dir: /app-main-page
+    volumes:
+      - ./main-page:/app-main-page:rw
+    depends_on:
+      - api
+    ports:
+      - 3000:3000
+    # environment:
+    #   - REACT_APP_BASE_URL_API=http://localhost:4000
+    restart: on-failure
+    command: npm start
+
+  api:
+    env_file: .env
+    container_name: api-${APP_NAME}
+    build: api
+    ports:
+      - 4000:4000
+    depends_on:
+      - mongodb
+    environment:
+      - M_HOSTNAME=mongodb-${APP_NAME}
+    restart: on-failure
+
+volumes:
+    mongodb-data:

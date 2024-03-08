@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  mongodb:
+    env_file: .env
+    container_name: mongodb-${APP_NAME}
+    image: mongo:latest
+    volumes:
+      - mongodb-data:/data/db
+      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js  # create user <--
+    ports:
+      - 27017:27017
+    command: [--auth]
+    restart: on-failure
+
+  api:
+    env_file: .env
+    environment:
+      - ENV=production
+      - M_HOSTNAME=mongodb-${APP_NAME}
+    container_name: api-${APP_NAME}
+    build: api
+    depends_on:
+      - mongodb
+    ports:
+      - 4000:4000
+    restart: on-failure
+
+volumes:
+  mongodb-data:
