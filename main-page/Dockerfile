@@ -19,5 +19,5 @@ RUN apk add --update --no-cache \
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . ./
-ENV REACT_APP_BASE_URL_API=http://localhost:4000/api
+ENV REACT_APP_BASE_URL_API=http://blglib:4000/api
 RUN npm run build
