@@ -11,13 +11,19 @@
 //   ],
 // });
 
-db.getSiblingDB('admin').auth(
+db.getSiblingDB(process.env.M_DATABASE).auth(
   process.env.MONGO_INITDB_ROOT_USERNAME,
   process.env.MONGO_INITDB_ROOT_PASSWORD
 );
 
 db.createUser({
-  user: process.env.MONGO_USER,
-  pwd: process.env.MONGO_PASSWORD,
-  roles: ["readWrite"],
+  user: process.env.M_USERNAME,
+  pwd: process.env.M_PASSWORD,
+  roles: [
+    "readWrite",
+    {
+      role: 'dbOwner',
+      db: process.env.M_DATABASE,
+    },
+  ],
 });
