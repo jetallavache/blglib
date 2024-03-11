@@ -1,12 +1,12 @@
 version: '3.3'
 services:
   mongodb:
-    env_file: .env.mongo
+    env_file: [.env.mongo, .env]
     container_name: mongodb-${APP_NAME}
     image: mongo:latest
     volumes:
       - mongodb-data:/data/db
-      # - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js  # create user <--
+      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js  # create user <--
     ports:
       - 27017:27017
     # command: [--auth]
