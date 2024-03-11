@@ -16,7 +16,7 @@ router.patch('/author/:id', author_valid, check_auth, handle_valid_err, author_c
 // router.get('/books', check_auth, book_controller.book_list);
 router.get('/books', book_controller.book_list);
 router.get('/book/:id', check_auth, book_controller.book_detail);
-router.post('/book/create', book_valid, check_auth, handle_valid_err, set_covers, book_controller.book_create);
+router.post('/book/create', book_valid, check_auth, handle_valid_err, /*set_covers,*/ book_controller.book_create);
 router.delete('/book/:id', check_auth, book_controller.book_remove);
 router.patch('/book/:id', book_valid, check_auth, handle_valid_err, book_controller.book_update);
 
