@@ -28,4 +28,4 @@ sudo docker run --name blglib-mongodb -d -p 27017:27017 -e MONGO_INITDB_ROOT_USE
 sudo docker compose down --rmi all
 ```
 
-
+mongosh -u "root" -p "ring3-1foyL" --authenticationDatabase "blglib-db"
