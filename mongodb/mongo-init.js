@@ -10,8 +10,20 @@ db.createUser({
   pwd: process.env.M_PASSWORD,
   roles: [
     {
-      role: 'root',
+      role: 'readWrite',
       db: process.env.M_DATABASE,
     },
   ],
 });
+
+
+// db.createUser({
+//   user: 'eddacris',
+//   pwd: 'qiztuw-qiQhy4',
+//   roles: [
+//     {
+//       role: 'readWrite',
+//       db: 'blglib-db',
+//     },
+//   ],
+// });

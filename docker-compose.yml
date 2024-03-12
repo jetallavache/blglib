@@ -5,7 +5,7 @@ services:
     container_name: mongodb-${APP_NAME}
     image: mongo:latest
     volumes:
-      - mongodb-data-2:/data/db
+      - mongodb-data:/data/db
       - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro  # create user <--
     ports:
       - 27017:27017
@@ -26,4 +26,4 @@ services:
     restart: on-failure
 
 volumes:
-  mongodb-data-2:
+  mongodb-data:
