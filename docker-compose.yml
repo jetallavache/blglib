@@ -26,4 +26,4 @@ services:
     restart: on-failure
 
 volumes:
-  mongodb-data:
+  mongodb-data-2:
