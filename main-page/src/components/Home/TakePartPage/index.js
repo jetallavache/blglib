@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-// import ReCAPTCHA from 'react-google-recaptcha';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import { fetchAddMember, selectIsAddMember } from '../../../redux/slices/addMember';
 
@@ -110,11 +110,11 @@ export const TakePartPage = ({countParticipants}) => {
     }
   }
 
-  // const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
+  const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
 
-  // function onChange(value) {
-  //   setIsCaptchaSuccess(true)
-  // }
+  function onChange(value) {
+    setIsCaptchaSuccess(true)
+  }
 
   return (
     <div className='take-part-container'>
@@ -206,11 +206,11 @@ export const TakePartPage = ({countParticipants}) => {
                 fullWidth
               />
 
-              {/* <ReCAPTCHA
+              <ReCAPTCHA
                 sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                 onChange={onChange}
                 theme='dark'
-              /> */}
+              />
 
               <Button
                 sx={{
@@ -222,7 +222,7 @@ export const TakePartPage = ({countParticipants}) => {
                   }
                 }}
 
-                // disabled={!isCaptchaSuccessful}
+                disabled={!isCaptchaSuccessful}
                 type='submit'
                 size='large'
                 variant='contained'

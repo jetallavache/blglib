@@ -24,8 +24,6 @@ services:
       - api
     ports:
       - 3000:3000
-    # environment:
-    #   - REACT_APP_BASE_URL_API=http://localhost:4000
     restart: on-failure
     command: npm start
 

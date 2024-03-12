@@ -7,5 +7,3 @@ const {
   } = process.env;
   
 export const url = `mongodb://${M_USERNAME}:${M_PASSWORD}@${M_HOSTNAME}:${M_PORT}/${M_DATABASE}?authMechanism=DEFAULT&authSource=${M_DATABASE}`;
-
-// export const url = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}:${DB_PORT}/${M_DATABASE}?authSource=admin`;

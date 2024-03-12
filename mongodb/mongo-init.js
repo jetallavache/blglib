@@ -19,15 +19,3 @@ db.createUser({
     },
   ],
 });
-
-
-// db.createUser({
-//   user: 'eddacris',
-//   pwd: 'qiztuw-qiQhy4',
-//   roles: [
-//     {
-//       role: 'readWrite',
-//       db: 'blglib-db',
-//     },
-//   ],
-// });
