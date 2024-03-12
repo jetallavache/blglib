@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   mongodb:
-    env_file: [.env.mongo, .env]
+    env_file: [ .env.mongo, .env]
     container_name: mongodb-${APP_NAME}
     image: mongo:latest
     volumes:
@@ -9,14 +9,14 @@ services:
       - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro  # create user <--
     ports:
       - 27017:27017
-    # command: [--auth]
+    command: [--auth]
     restart: on-failure
 
   api:
     env_file: .env
     environment:
       - ENV=production
-      # - M_HOSTNAME=mongodb-${APP_NAME}
+      - M_HOSTNAME=mongodb-${APP_NAME}
     container_name: api-${APP_NAME}
     build: api
     depends_on:

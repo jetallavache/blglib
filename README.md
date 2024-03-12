@@ -29,3 +29,16 @@ sudo docker compose down --rmi all
 ```
 
 mongosh -u "root" -p "ring3-1foyL" --authenticationDatabase "blglib-db"
+
+
+mongosh -u "root" -p "ring3-1foyL" --authenticationDatabase "admin"
+
+
+sudo docker exec -it mongodb-blglib mongosh -u root -p ring3-1foyL --authenticationDatabase admin
+use blglib-db
+db.mycollection.find()
+db.getUsers()
+
+
+
+sudo docker volume rm blglib_v10_mongodb-data
