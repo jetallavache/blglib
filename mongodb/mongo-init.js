@@ -5,9 +5,9 @@
 
 db.getSiblingDB(process.env.M_DATABASE);
 
-db.mycollection.insert([
-  { name: 'test-collection' }
-]);
+// db.mycollection.insert([
+//   { name: 'test-collection' }
+// ]);
 
 db.createUser({
   user: process.env.M_USERNAME,

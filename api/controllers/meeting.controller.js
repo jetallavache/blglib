@@ -101,7 +101,7 @@ export const meeting_last = async (req, res) => {
   try {
     const meeting = await meeting_model
       .findOne({})
-      .sort({ _id: -1 })
+      .sort({ date: -1 })
       .exec();
 
     const date = meeting.date_formatted;
