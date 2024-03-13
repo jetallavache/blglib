@@ -35,8 +35,8 @@ services:
       - 4000:4000
     depends_on:
       - mongodb
-    environment:
-      - M_HOSTNAME=mongodb-${APP_NAME}
+    #environment:
+    # - M_HOSTNAME=mongodb-${APP_NAME}
     restart: on-failure
 
 volumes:
