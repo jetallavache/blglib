@@ -1,42 +1,49 @@
 version: '3.3'
 
 services:
-  mongodb:
-    env_file: [.env, .env.mongo ] 
-    container_name: mongodb-${APP_NAME}
+  main-page-dev:
+    env_file: .env.dev
+    container_name: main-page-blglib-dev
+    build:
+      context: ./main-page
+      dockerfile: Dockerfile.main-page.dev
+    image: main-page-img-dev
+    volumes:
+      - ./main-page/src:/app-main-page/src
+    command: npm start
+    ports:
+      - 3000:3000
+    depends_on:
+      - api-dev
+    restart: "no"
+
+  api-dev:
+    env_file: .env.dev
+    container_name: api-blglib-dev
+    build:
+      context: ./api
+      dockerfile: Dockerfile.api.dev
+    image: api-img-dev
+    volumes:
+      - ./api/src:/app-api/src
+      - ./api/package.json:/app-api/package.json:rw
+      - ./api/package-lock.json:/app-api/package-lock.json:rw
+    command: npm run dev
+    ports:
+      - 4000:4000
+    depends_on:
+      - mongodb-dev
+    restart: on-failure
+  
+  mongodb-dev:
+    env_file: [.env.dev, .env.mongo ] 
+    container_name: mongodb-blglib-dev
     image: mongo:latest
     volumes:
       - mongodb-data:/data/db
       - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js  # create user <--
     ports:
       - 27017:27017
-    # command: [--auth]
-    restart: on-failure
-
-  main-page:
-    env_file: .env
-    container_name: main-page-${APP_NAME}
-    image: node:${NODE_VERSION}-alpine
-    working_dir: /app-main-page
-    volumes:
-      - ./main-page:/app-main-page:rw
-    depends_on:
-      - api
-    ports:
-      - 3000:3000
-    restart: on-failure
-    command: npm start
-
-  api:
-    env_file: .env
-    container_name: api-${APP_NAME}
-    build: api
-    ports:
-      - 4000:4000
-    depends_on:
-      - mongodb
-    #environment:
-    # - M_HOSTNAME=mongodb-${APP_NAME}
     restart: on-failure
 
 volumes:

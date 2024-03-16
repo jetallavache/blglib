@@ -1,29 +1,79 @@
 version: '3.3'
+
 services:
+  proxy:
+    env_file: .env.prod
+    container_name: proxy-blglib
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile.proxy
+    image: proxy-img
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - main-page
+    restart: "no"
+    networks:
+      - "api"
+      - "main-page"
+
+  main-page:
+    env_file: .env.prod
+    container_name: main-page-blglib
+    build:
+      context: ./main-page
+      dockerfile: Dockerfile.main-page
+      args:
+        - REACT_APP_BASE_URL_API=https://api.blglib.ru
+    image: main-page-img
+    expose:
+      - 80
+    restart: "no"
+    networks:
+      - "main-page"
+
+  api:
+    env_file: .env.prod
+    container_name: api-blglib
+    build:
+      context: ./api
+      dockerfile: Dockerfile.api
+    image: api-img
+    command: npm start
+    # ports:
+    #   - 4000:4000
+    expose:
+      - 4000
+    depends_on:
+      - mongodb
+    restart: on-failure
+    networks:
+      - "api"
+
   mongodb:
-    env_file: [ .env.mongo, .env]
-    container_name: mongodb-${APP_NAME}
+    env_file: [ .env.mongo, .env.prod]
+    container_name: mongodb-blglib
     image: mongo:latest
     volumes:
       - mongodb-data:/data/db
       - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro  # create user <--
-    ports:
-      - 27017:27017
-    command: [--auth]
+    # ports:
+    #   - 27017:27017
+    expose:
+      - 27017
     restart: on-failure
-
-  api:
-    env_file: .env
-    environment:
-      - ENV=production
-      # - M_HOSTNAME=mongodb-${APP_NAME}
-    container_name: api-${APP_NAME}
-    build: api
-    depends_on:
-      - mongodb
-    ports:
-      - 4000:4000
-    restart: on-failure
+    networks:
+      - "api"
 
 volumes:
   mongodb-data:
+
+networks:
+  api:
+    external:
+      name: api-net
+  main-page:
+    external:
+      name: main-page-net
+  

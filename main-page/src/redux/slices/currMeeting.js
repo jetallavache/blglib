@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
+// import axios from 'axios';
 
 export const fetchCurrMeeting = createAsyncThunk(
   'currMeeting/fetchCurrMeeting',
   async () => {
-    const { data } = await axios.get('/');
+    const { data } = await axios.get('/welcome');
     return data;
   }
 );

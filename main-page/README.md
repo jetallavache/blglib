@@ -1,8 +1,5 @@
-
 sudo docker build . -t eddacris/blglib-main-page
 sudo docker push eddacris/blglib-main-page
-
-
 
 # Getting Started with Create React App
 

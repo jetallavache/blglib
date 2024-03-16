@@ -1,7 +1,18 @@
 
+### Production
+
+1. Перенести .env.prod и .env.mongo
+
+2. Переместить ключи сертификатов в папке proxy
+
+3. Создать сети
+
 ```
-sudo npm i -g yarn
+sudo docker network create api-net
+sudo docker network create main-page-net
 ```
+4. Запустить docker-compose up
+
 
 #### package.json
   "dev:client": "yarn --cwd main-page",
@@ -39,6 +50,6 @@ use blglib-db
 db.mycollection.find()
 db.getUsers()
 
-
-
 sudo docker volume rm blglib_v10_mongodb-data
+
+sudo docker network create net

@@ -48,20 +48,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 
-if (process.env.ENV === 'production') {
-  const clientBuildPath = path.join(__dirname, 'app-main-page', 'build');
+// if (process.env.ENV === 'production') {
+//   const clientBuildPath = path.join(__dirname, 'app-main-page', 'build');
   // const adminDistPath = path.join(__dirname, 'admin', 'dist')
 
-  app.use(express.static(clientBuildPath));
+  // app.use(express.static(clientBuildPath));
   // app.use(express.static(adminDistPath))
   // app.use('/admin', (req, res) => {
   //   res.sendFile(join(adminDistPath, decodeURIComponent(req.url)))
   // })
-}
+// }
 
-app.use('/api', index_router);
-app.use('/api/auth', auth_router);
-app.use('/api/control', control_router);
+app.use('/welcome', index_router);
+app.use('/auth', auth_router);
+app.use('/control', control_router);
 
 app.use(function(req, res, next) {
   next(createError(404));

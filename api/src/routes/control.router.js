@@ -3,7 +3,7 @@ var router = express.Router();
 
 import { author_valid, book_valid, meeting_valid, member_valid } from '../validations/index.js';
 
-import { handle_valid_err, check_auth, set_covers } from '../utils/index.js';
+import { handle_valid_err, check_auth} from '../utils/index.js'; // set_covers
 
 import { author_controller, book_controller, meeting_controller, member_controller } from '../controllers/index.js';
 

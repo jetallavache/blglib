@@ -15,6 +15,7 @@
     "clsx": "^1.1.1",
     "easymde": "^2.16.1",
     "emailjs-com": "^3.2.0",
+    "env-cmd": "^10.1.0",
     "prettier": "^2.6.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -34,7 +35,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start2": "webpack serve",
+    "build2": "webpack",
+    "build-prod2": "webpack --mode=production",
+    "clean2": "rm -r dist"
   },
   "eslintConfig": {
     "extends": [
@@ -56,6 +61,10 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@types/react-google-recaptcha": "^2.1.9"
+    "html-loader": "^5.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }

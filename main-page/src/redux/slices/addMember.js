@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
+// import axios from 'axios';
 
 export const fetchAddMember = createAsyncThunk(
     'addMember/fetchAddMember',
     async (params) => {
-        const { data } = await axios.post('/', params);
+        const { data } = await axios.post('/welcome', params);
         return data;
     }
 );

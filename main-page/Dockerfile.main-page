@@ -1,0 +1,25 @@
+ARG NODE_VERSION=20
+ARG NGINX_VERSION=1.9
+
+FROM node:${NODE_VERSION}-alpine as builder
+
+WORKDIR /app-main-page
+
+COPY . .
+
+RUN npm install
+
+ARG REACT_APP_BASE_URL_API
+ENV REACT_APP_BASE_URL_API $REACT_APP_BASE_URL_API
+RUN echo "$REACT_APP_BASE_URL_API"
+
+
+RUN npm run build
+
+FROM nginx:${NGINX_VERSION}
+
+COPY --from=builder /app-main-page/build /usr/share/nginx/html
+
+RUN chown nginx.nginx /usr/share/nginx/html/ -R
+
+# EXPOSE 80

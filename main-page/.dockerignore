@@ -1,4 +1,8 @@
-node_modules/
+node_modules
 README.md
-.env
-Dockerfile
+.env*
+Dockerfile*
+
+.git*
+npm-debug
+build
