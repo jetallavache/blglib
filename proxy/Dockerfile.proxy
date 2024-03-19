@@ -6,8 +6,8 @@ FROM nginx:${NGINX_VERSION}
 
 # Set our custom nginx.conf in the container
 RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY blglib.ru.crt blglib.ru.key /etc/ssl/
+# COPY nginx.conf /etc/nginx/nginx.conf
+# COPY blglib.ru.crt blglib.ru.key /etc/ssl/
 
 # # Copy the react build from the build container
 # COPY --from=builder /app-main-page/build /usr/share/nginx/html
