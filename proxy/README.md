@@ -10,3 +10,8 @@ docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certb
 
 
 docker compose run --rm certbot renew
+
+
+
+
+SLEEPTIME=$(awk 'BEGIN{srand(); print int(rand()*(3600+1))}'); echo "0 0,12 * * * root sleep $SLEEPTIME && docker compose run --rm certbot renew -q --allow-subset-of-names" | sudo tee -a /etc/crontab > /dev/null
